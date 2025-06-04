@@ -1,6 +1,8 @@
 package com.jarmison.incassdev.application.v1;
 
 import jakarta.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import com.jarmison.incassdev.core.base.BaseController;
 import com.jarmison.incassdev.core.domain.model.Audiencia;
 import com.jarmison.incassdev.core.infrastructure.dto.AudienciaRequestDTO;
 import com.jarmison.incassdev.core.infrastructure.dto.AudienciaResponseDTO;
+import com.jarmison.incassdev.core.infrastructure.repository.AudienciaRepository;
 import com.jarmison.incassdev.core.mapper.AudienciaMapper;
 import com.jarmison.incassdev.core.service.AudienciaService;
 
@@ -21,10 +24,13 @@ import java.util.stream.Collectors;
 @RequestMapping("/audiencias")
 public class AudienciaController extends BaseController<Audiencia, Long, AudienciaRequestDTO, AudienciaResponseDTO, AudienciaService, AudienciaMapper> {
 
-    public AudienciaController(AudienciaService service, AudienciaMapper mapper) {
-        super(service, mapper);
+    public AudienciaController(AudienciaService service, AudienciaMapper mapper ) {
+		super(service, mapper);
     }
-
+    
+    @Autowired
+    private AudienciaRepository audienciaRepo;
+    
     @Override
     public ResponseEntity<AudienciaResponseDTO> create(@Valid @RequestBody AudienciaRequestDTO requestDTO) {
         Audiencia audiencia = mapper.toEntity(requestDTO);
@@ -48,6 +54,16 @@ public class AudienciaController extends BaseController<Audiencia, Long, Audienc
         List<AudienciaResponseDTO> dtos = audiencias.stream()
                 .map(mapper::toDto)
                 .collect(Collectors.toList());
+        return ResponseEntity.ok(dtos);
+    }
+	
+    @GetMapping
+    public ResponseEntity<List<AudienciaResponseDTO>> getAllAudiencias() {
+        List<Audiencia> audiencias = audienciaRepo.findAll();
+
+        List<AudienciaResponseDTO> dtos = audiencias.stream()
+                                                    .map(mapper::toDto)
+                                                    .collect(Collectors.toList());
         return ResponseEntity.ok(dtos);
     }
 }

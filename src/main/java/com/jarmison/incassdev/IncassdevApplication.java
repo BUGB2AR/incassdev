@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.jarmison.incassdev*"})
+@ComponentScan(basePackages = {"com.jarmison.incassdev.*"})
 public class IncassdevApplication {
 
 	public static void main(String[] args) {

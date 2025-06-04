@@ -9,7 +9,7 @@ import com.jarmison.incassdev.core.domain.model.Audiencia;
 import com.jarmison.incassdev.core.infrastructure.dto.AudienciaRequestDTO;
 import com.jarmison.incassdev.core.infrastructure.dto.AudienciaResponseDTO;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface AudienciaMapper extends BaseMapper<Audiencia, AudienciaRequestDTO, AudienciaResponseDTO> {
 
     AudienciaMapper INSTANCE = Mappers.getMapper(AudienciaMapper.class);

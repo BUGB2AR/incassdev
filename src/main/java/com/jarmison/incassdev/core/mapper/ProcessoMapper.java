@@ -10,7 +10,7 @@ import com.jarmison.incassdev.core.domain.model.Processo;
 import com.jarmison.incassdev.core.infrastructure.dto.ProcessoRequestDTO;
 import com.jarmison.incassdev.core.infrastructure.dto.ProcessoResponseDTO;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface ProcessoMapper extends BaseMapper<Processo, ProcessoRequestDTO, ProcessoResponseDTO> {
 
     ProcessoMapper INSTANCE = Mappers.getMapper(ProcessoMapper.class);

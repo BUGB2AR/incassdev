@@ -11,6 +11,5 @@ import java.util.List;
 @Repository
 public interface AudienciaRepository extends JpaRepository<Audiencia, Long> {
     boolean existsByVaraAndLocalAndDataHoraBetween(String vara, String local, LocalDateTime start, LocalDateTime end);
-    List<Audiencia> findByComarcaAndDataHoraBetween(String comarca, LocalDateTime startOfDay, LocalDateTime endOfDay);
     List<Audiencia> findByProcessoComarcaAndDataHoraBetween(String comarca, LocalDateTime startOfDay, LocalDateTime endOfDay);
 }

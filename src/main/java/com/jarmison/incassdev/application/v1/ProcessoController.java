@@ -1,6 +1,7 @@
 package com.jarmison.incassdev.application.v1;
 
 import jakarta.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,7 @@ public class ProcessoController extends BaseController<Processo, Long, ProcessoR
     public ProcessoController(ProcessoService service, ProcessoMapper mapper) {
         super(service, mapper);
     }
+    
 
     @Override
     public ResponseEntity<ProcessoResponseDTO> create(@Valid @RequestBody ProcessoRequestDTO requestDTO) {
@@ -40,7 +42,7 @@ public class ProcessoController extends BaseController<Processo, Long, ProcessoR
     }
 
 
-    @GetMapping
+    @GetMapping("/todos-processos")
     public ResponseEntity<List<ProcessoResponseDTO>> listarProcessos(
             @RequestParam(required = false) StatusProcesso status,
             @RequestParam(required = false) String comarca) {
@@ -50,4 +52,6 @@ public class ProcessoController extends BaseController<Processo, Long, ProcessoR
                 .collect(Collectors.toList());
         return ResponseEntity.ok(dtos);
     }
+
+    
 }

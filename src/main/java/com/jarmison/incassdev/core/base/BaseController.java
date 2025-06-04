@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.jarmison.incassdev.application.controller.BaseRoutesController;
 
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 public abstract class BaseController<E, ID, ReqDTO, ResDTO, S extends BaseService<E, ID, ?>, M extends BaseMapper<E, ReqDTO, ResDTO>>
         implements BaseRoutesController<ReqDTO, ResDTO, ID> {
@@ -36,17 +35,6 @@ public abstract class BaseController<E, ID, ReqDTO, ResDTO, S extends BaseServic
         return ResponseEntity.ok(mapper.toDto(entity));
     }
 
-    @Override
-    @GetMapping
-    public ResponseEntity<List<ResDTO>> getAll() {
-        List<E> entities = service.findAll(); 
-        List<ResDTO> dtos = entities.stream()
-                .map(mapper::toDto)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(dtos);
-    }
-
-  
 
     @Override
     @DeleteMapping("/{id}")

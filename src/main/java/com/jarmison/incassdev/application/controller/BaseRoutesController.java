@@ -13,8 +13,6 @@ public interface BaseRoutesController<ReqDTO, ResDTO, ID> {
     @GetMapping("/{id}")
     ResponseEntity<ResDTO> getById(@PathVariable ID id);
 
-    @GetMapping
-    ResponseEntity<List<ResDTO>> getAll();
 
     @PutMapping("/{id}")
     ResponseEntity<ResDTO> update(@PathVariable ID id, @RequestBody ReqDTO requestDTO);
