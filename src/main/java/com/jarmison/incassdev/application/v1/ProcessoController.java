@@ -34,7 +34,7 @@ public class ProcessoController extends BaseController<Processo, Long, ProcessoR
     }
 
     @Override
-    @PutMapping("/{id}")
+
     public ResponseEntity<ProcessoResponseDTO> update(@PathVariable Long id, @Valid @RequestBody ProcessoRequestDTO requestDTO) {
         Processo processoAtualizado = mapper.toEntity(requestDTO);
         Processo processoSalvo = service.atualizarProcesso(id, processoAtualizado);
